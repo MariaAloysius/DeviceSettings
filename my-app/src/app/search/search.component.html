@@ -1,0 +1,88 @@
+<!-- Device Search -->
+<div class="form-group">
+    <input type="number" id="deviceId" onKeyDown="if(this.value.length==6 && event.keyCode!=8) return false;"  class="form-control" required placeholder="Device ID" (keyup)="onKeyup($event)"/>
+    <button  id="viewDetails" (click)="getDetails()"  class="btn btn-primary">View Details</button>
+    
+    <div class="alert alert-success" *ngIf="updateMessage">
+        <strong>Settings updated!</strong> 
+    </div>
+    <div class="alert alert-warning" *ngIf="errorMessage">
+        <strong>{{errorMessage}}</strong> 
+    </div>
+</div>
+
+<!-- Device Settings Details -->
+<div class="container clearfix"  *ngIf="showResult">
+    <h3>DEVICE SETTINGS</h3>
+    
+    <table id="data-table" cellspacing="0" class="table table-bordered">        
+        <tbody>
+        <tr>
+            <th>Device Name</th>
+            <td><input type="text" id="deviceName"  class="textbox"  required [(ngModel)]="result.Model.RuntimeSettings.DeviceName"/></td>
+        </tr>
+        <tr>
+            <th>Phone number</th>
+            <td><input type="tel" id="deviceName"   class="textbox" required [(ngModel)]="result.Model.RuntimeSettings.CmfPhoneNumber"/></td>
+        </tr>
+        <tr>
+            <th>Adherence Check Interval</th>
+            <td><input type="text" id="deviceName"   class="textbox" required [(ngModel)]="result.Model.RuntimeSettings.AdherenceCheckInterval"/></td>
+        </tr>
+        <tr>
+            <th>Geo-Location TimeOut</th>
+            <td><input type="text" id="deviceName"  class="textbox" required [(ngModel)]="result.Model.RuntimeSettings.GeoLocationTimeOut"/></td>
+        </tr>
+        <tr>
+            <th>Report Interval</th>
+            <td><input type="text" id="deviceName"  class="textbox" required [(ngModel)]="result.Model.RuntimeSettings.ReportInterval"/></td>
+        </tr>
+        <tr>
+            <th>Ping Interval</th>
+            <td><input type="text" id="deviceName"  class="textbox" required [(ngModel)]="result.Model.RuntimeSettings.PingInterval"/></td>
+        </tr>
+        <tr>
+            <th>Alarm Clear Timeout</th>
+            <td><input type="text" id="deviceName"  class="textbox" required [(ngModel)]="result.Model.RuntimeSettings.AlarmClearTimeout"/></td>
+        </tr>
+        <tr>
+            <th>Alarm Cancel Timeout</th>
+            <td><input type="text" id="deviceName"  class="textbox" required [(ngModel)]="result.Model.RuntimeSettings.AlarmCancelTimeout"/></td>
+        </tr>
+        <tr>
+            <th>Geo-Location High Accuracy</th>
+            <td>
+                <div class="radio">
+                    <label><input type="radio" name="optradio" [value]="true" [(ngModel)]="result.Model.RuntimeSettings.GeoLocationHighAccuracy"  [checked]="result.Model.RuntimeSettings.GeoLocationHighAccuracy==true" >True</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="optradio" [value]="false" [(ngModel)]="result.Model.RuntimeSettings.GeoLocationHighAccuracy" [checked]="result.Model.RuntimeSettings.GeoLocationHighAccuracy==false">False</label>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <th>Demo Mode</th>
+            <td>
+                <div class="radio">
+                    <label><input type="radio" name="DemoModeradio" [value]="true" [(ngModel)]="result.Model.RuntimeSettings.DemoMode"  [checked]="result.Model.RuntimeSettings.DemoMode==true" >True</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="DemoModeradio" [value]="false" [(ngModel)]="result.Model.RuntimeSettings.DemoMode" [checked]="result.Model.RuntimeSettings.DemoMode==false">False</label>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <th>Palm-Touch Trigger</th>
+            <td>
+                <div class="radio">
+                    <label><input type="radio" name="PalmTouchTriggerradio" [value]="true" [(ngModel)]="result.Model.RuntimeSettings.PalmTouchTrigger"  [checked]="result.Model.RuntimeSettings.PalmTouchTrigger==true" >True</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="PalmTouchTriggeradio" [value]="false" [(ngModel)]="result.Model.RuntimeSettings.PalmTouchTrigger" [checked]="result.Model.RuntimeSettings.PalmTouchTrigger==false">False</label>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table> 
+    <button  id="updateDetails" (click)="updateDetails()" class="btn btn-primary">Update</button>
+</div>
